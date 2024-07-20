@@ -2,7 +2,7 @@
 
 //! Example use of Dropshot with TLS enabled
 
-use dropshot::endpoint;
+use dropshot::{endpoint, HandlerTaskMode};
 use dropshot::ApiDescription;
 use dropshot::ConfigDropshot;
 use dropshot::ConfigLogging;
@@ -32,7 +32,11 @@ async fn main() -> Result<(), String> {
     // port.
     //
     // In addition, we'll make this an HTTPS server.
-    let config_dropshot = ConfigDropshot::default();
+    let config_dropshot = ConfigDropshot {
+        bind_address: "0.0.0.0:8080".parse().unwrap(),
+        request_body_max_bytes: 1024,
+        default_handler_task_mode: HandlerTaskMode::Detached,
+    };
     // let config_tls = Some(ConfigTls::AsFile {
     //     cert_file: cert_file.path().to_path_buf(),
     //     key_file: key_file.path().to_path_buf(),
