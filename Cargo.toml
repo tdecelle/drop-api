@@ -1,0 +1,11 @@
+[package]
+name = "drop-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.204", features = ["derive"] }
+tempfile = "3.10.1"
+tokio = "1.38.1"
+dropshot = "0.10.1"
+schemars = { version = "0.8.21"}
